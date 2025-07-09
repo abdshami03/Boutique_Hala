@@ -1,0 +1,445 @@
+<!DOCTYPE html>
+<html lang="en">
+  <head>
+    <meta charset="UTF-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <title>Boutique Hala - Elegant Abayas</title>
+    <link rel="stylesheet" href="styles.css" />
+    <link rel="preconnect" href="https://fonts.googleapis.com" />
+    <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin />
+    <link
+      href="https://fonts.googleapis.com/css2?family=Inter:wght@300;400;500;600;700&display=swap"
+      rel="stylesheet"
+    />
+  </head>
+  <body>
+    <!-- Navigation -->
+    <nav class="navbar">
+      <div class="nav-container">
+        <div class="nav-left">
+          <button class="back-btn" id="backBtn" style="display: none">
+            <svg
+              width="16"
+              height="16"
+              viewBox="0 0 24 24"
+              fill="none"
+              stroke="currentColor"
+              stroke-width="2"
+            >
+              <path d="M19 12H5M12 19l-7-7 7-7" />
+            </svg>
+            Back to Gallery
+          </button>
+        </div>
+        <div class="nav-center">
+          <div class="nav-logo">🕌</div>
+          <h1 class="nav-title">Boutique Hala</h1>
+        </div>
+        <div class="nav-right">
+          <button class="admin-btn" id="adminBtn">
+            <svg
+              width="16"
+              height="16"
+              viewBox="0 0 24 24"
+              fill="none"
+              stroke="currentColor"
+              stroke-width="2"
+            >
+              <circle cx="12" cy="12" r="3" />
+              <path d="M12 1v6m0 6v6" />
+              <path d="M15.5 3.5a8 8 0 0 1 0 17" />
+              <path d="M8.5 3.5a8 8 0 0 0 0 17" />
+            </svg>
+            Admin
+          </button>
+        </div>
+      </div>
+    </nav>
+
+    <!-- Main Content -->
+    <main class="main-content">
+      <!-- Gallery View -->
+      <div id="galleryView" class="gallery-view">
+        <!-- Filters Section -->
+        <div class="filters-section">
+          <div class="filters-container">
+            <div class="filters-left">
+              <!-- Search -->
+              <div class="search-container">
+                <svg
+                  class="search-icon"
+                  width="16"
+                  height="16"
+                  viewBox="0 0 24 24"
+                  fill="none"
+                  stroke="currentColor"
+                  stroke-width="2"
+                >
+                  <circle cx="11" cy="11" r="8" />
+                  <path d="m21 21-4.35-4.35" />
+                </svg>
+                <input
+                  type="text"
+                  id="searchInput"
+                  placeholder="Search abayas..."
+                  class="search-input"
+                />
+              </div>
+
+              <!-- Size Filter -->
+              <div class="filter-group">
+                <label class="filter-label">Size:</label>
+                <select id="sizeFilter" class="filter-select">
+                  <option value="all">All Sizes</option>
+                </select>
+              </div>
+
+              <!-- Category Filter -->
+              <div class="filter-group">
+                <label class="filter-label">Category:</label>
+                <select id="categoryFilter" class="filter-select">
+                  <option value="all">All Categories</option>
+                </select>
+              </div>
+            </div>
+
+            <div class="filters-right">
+              <!-- Clear Filters -->
+              <button
+                id="clearFiltersBtn"
+                class="clear-filters-btn"
+                style="display: none"
+              >
+                <svg
+                  width="16"
+                  height="16"
+                  viewBox="0 0 24 24"
+                  fill="none"
+                  stroke="currentColor"
+                  stroke-width="2"
+                >
+                  <path
+                    d="M3 6h18M19 6v14a2 2 0 0 1-2 2H7a2 2 0 0 1-2-2V6m3 0V4a2 2 0 0 1 2-2h4a2 2 0 0 1 2 2v2"
+                  />
+                </svg>
+                Clear Filters
+              </button>
+
+              <!-- View Mode Toggle -->
+              <div class="view-mode-toggle">
+                <button id="gridViewBtn" class="view-btn active">
+                  <svg
+                    width="16"
+                    height="16"
+                    viewBox="0 0 24 24"
+                    fill="none"
+                    stroke="currentColor"
+                    stroke-width="2"
+                  >
+                    <rect x="3" y="3" width="7" height="7" />
+                    <rect x="14" y="3" width="7" height="7" />
+                    <rect x="14" y="14" width="7" height="7" />
+                    <rect x="3" y="14" width="7" height="7" />
+                  </svg>
+                </button>
+                <button id="listViewBtn" class="view-btn">
+                  <svg
+                    width="16"
+                    height="16"
+                    viewBox="0 0 24 24"
+                    fill="none"
+                    stroke="currentColor"
+                    stroke-width="2"
+                  >
+                    <line x1="8" y1="6" x2="21" y2="6" />
+                    <line x1="8" y1="12" x2="21" y2="12" />
+                    <line x1="8" y1="18" x2="21" y2="18" />
+                    <line x1="3" y1="6" x2="3.01" y2="6" />
+                    <line x1="3" y1="12" x2="3.01" y2="12" />
+                    <line x1="3" y1="18" x2="3.01" y2="18" />
+                  </svg>
+                </button>
+              </div>
+            </div>
+          </div>
+
+          <!-- Active Filters Display -->
+          <div
+            id="activeFilters"
+            class="active-filters"
+            style="display: none"
+          ></div>
+        </div>
+
+        <!-- Results Count -->
+        <div class="results-count">
+          <p id="resultsCount" class="results-text">0 abayas found</p>
+        </div>
+
+        <!-- Gallery Grid -->
+        <div id="galleryGrid" class="gallery-grid"></div>
+
+        <!-- Empty State -->
+        <div id="emptyState" class="empty-state" style="display: none">
+          <div class="empty-icon">👗</div>
+          <h3 class="empty-title">No abayas found</h3>
+          <p class="empty-description">
+            Try adjusting your filters to see more results
+          </p>
+          <button id="clearAllFiltersBtn" class="clear-all-btn">
+            Clear all filters
+          </button>
+        </div>
+      </div>
+
+      <!-- Item Detail View -->
+      <div id="itemDetailView" class="item-detail-view" style="display: none">
+        <div class="item-detail-container">
+          <div class="item-detail-grid">
+            <!-- Image Gallery -->
+            <div class="item-images">
+              <div class="main-image-container">
+                <img id="mainImage" src="" alt="" class="main-image" />
+              </div>
+              <div id="thumbnailGallery" class="thumbnail-gallery"></div>
+              <div
+                id="videoSection"
+                class="video-section"
+                style="display: none"
+              ></div>
+            </div>
+
+            <!-- Item Info -->
+            <div class="item-info">
+              <div class="item-header">
+                <div class="item-badge" id="itemCategory"></div>
+                <h1 id="itemName" class="item-name"></h1>
+                <p id="itemDescription" class="item-description"></p>
+              </div>
+
+              <div class="item-details">
+                <!-- Price -->
+                <div
+                  id="itemPrice"
+                  class="item-price"
+                  style="display: none"
+                ></div>
+
+                <!-- Sizes -->
+                <div class="detail-section">
+                  <h3 class="detail-title">Available Sizes</h3>
+                  <div id="itemSizes" class="size-badges"></div>
+                </div>
+
+                <!-- Colors -->
+                <div class="detail-section">
+                  <h3 class="detail-title">Available Colors</h3>
+                  <div id="itemColors" class="color-display"></div>
+                </div>
+
+                <!-- Contact Actions -->
+                <div class="contact-actions">
+                  <h3 class="detail-title">Interested in this abaya?</h3>
+                  <div class="contact-buttons">
+                    <button class="contact-btn phone-btn" data-method="phone">
+                      <svg
+                        width="16"
+                        height="16"
+                        viewBox="0 0 24 24"
+                        fill="none"
+                        stroke="currentColor"
+                        stroke-width="2"
+                      >
+                        <path
+                          d="M22 16.92v3a2 2 0 0 1-2.18 2 19.79 19.79 0 0 1-8.63-3.07 19.5 19.5 0 0 1-6-6 19.79 19.79 0 0 1-3.07-8.67A2 2 0 0 1 4.11 2h3a2 2 0 0 1 2 1.72 12.84 12.84 0 0 0 .7 2.81 2 2 0 0 1-.45 2.11L8.09 9.91a16 16 0 0 0 6 6l1.27-1.27a2 2 0 0 1 2.11-.45 12.84 12.84 0 0 0 2.81.7A2 2 0 0 1 22 16.92z"
+                        />
+                      </svg>
+                      Call Us
+                    </button>
+                    <button class="contact-btn email-btn" data-method="email">
+                      <svg
+                        width="16"
+                        height="16"
+                        viewBox="0 0 24 24"
+                        fill="none"
+                        stroke="currentColor"
+                        stroke-width="2"
+                      >
+                        <path
+                          d="M4 4h16c1.1 0 2 .9 2 2v12c0 1.1-.9 2-2 2H4c-1.1 0-2-.9-2-2V6c0-1.1.9-2 2-2z"
+                        />
+                        <polyline points="22,6 12,13 2,6" />
+                      </svg>
+                      Email
+                    </button>
+                    <button
+                      class="contact-btn whatsapp-btn"
+                      data-method="whatsapp"
+                    >
+                      <svg
+                        width="16"
+                        height="16"
+                        viewBox="0 0 24 24"
+                        fill="none"
+                        stroke="currentColor"
+                        stroke-width="2"
+                      >
+                        <path
+                          d="M21 15a2 2 0 0 1-2 2H7l-4 4V5a2 2 0 0 1 2-2h14a2 2 0 0 1 2 2z"
+                        />
+                      </svg>
+                      WhatsApp
+                    </button>
+                  </div>
+                </div>
+              </div>
+            </div>
+          </div>
+        </div>
+      </div>
+
+      <!-- Admin Login View -->
+      <div id="adminLoginView" class="admin-login-view" style="display: none">
+        <div class="admin-login-container">
+          <div class="admin-login-card">
+            <h2 class="admin-login-title">Admin Access</h2>
+            <form id="adminLoginForm" class="admin-login-form">
+              <div class="form-group">
+                <label for="adminPassword" class="form-label">Password</label>
+                <input
+                  type="password"
+                  id="adminPassword"
+                  class="form-input"
+                  required
+                />
+              </div>
+              <button type="submit" class="admin-login-btn">Login</button>
+            </form>
+          </div>
+        </div>
+      </div>
+
+      <!-- Admin Dashboard View -->
+      <div
+        id="adminDashboardView"
+        class="admin-dashboard-view"
+        style="display: none"
+      >
+        <div class="admin-dashboard-container">
+          <div class="admin-header">
+            <h2 class="admin-title">Admin Dashboard</h2>
+            <button id="logoutBtn" class="logout-btn">Logout</button>
+          </div>
+
+          <div class="admin-content">
+            <div class="admin-section">
+              <h3 class="section-title">Add New Abaya</h3>
+              <form id="addItemForm" class="admin-form">
+                <div class="form-row">
+                  <div class="form-group">
+                    <label for="itemNameInput" class="form-label">Name</label>
+                    <input
+                      type="text"
+                      id="itemNameInput"
+                      class="form-input"
+                      required
+                    />
+                  </div>
+                  <div class="form-group">
+                    <label for="itemCategoryInput" class="form-label"
+                      >Category</label
+                    >
+                    <input
+                      type="text"
+                      id="itemCategoryInput"
+                      class="form-input"
+                      required
+                    />
+                  </div>
+                </div>
+
+                <div class="form-group">
+                  <label for="itemDescriptionInput" class="form-label"
+                    >Description</label
+                  >
+                  <textarea
+                    id="itemDescriptionInput"
+                    class="form-textarea"
+                    rows="3"
+                    required
+                  ></textarea>
+                </div>
+
+                <div class="form-row">
+                  <div class="form-group">
+                    <label for="itemPriceInput" class="form-label">Price</label>
+                    <input
+                      type="text"
+                      id="itemPriceInput"
+                      class="form-input"
+                      placeholder="$120"
+                    />
+                  </div>
+                  <div class="form-group">
+                    <label for="itemSizesInput" class="form-label"
+                      >Sizes (comma-separated)</label
+                    >
+                    <input
+                      type="text"
+                      id="itemSizesInput"
+                      class="form-input"
+                      placeholder="S, M, L, XL"
+                      required
+                    />
+                  </div>
+                </div>
+
+                <div class="form-group">
+                  <label for="itemColorsInput" class="form-label"
+                    >Colors (comma-separated)</label
+                  >
+                  <input
+                    type="text"
+                    id="itemColorsInput"
+                    class="form-input"
+                    placeholder="Black, Brown, Beige"
+                    required
+                  />
+                </div>
+
+                <div class="form-group">
+                  <label for="itemImagesInput" class="form-label"
+                    >Image URLs (comma-separated)</label
+                  >
+                  <input
+                    type="text"
+                    id="itemImagesInput"
+                    class="form-input"
+                    placeholder="https://example.com/image1.jpg, https://example.com/image2.jpg"
+                    required
+                  />
+                </div>
+
+                <button type="submit" class="admin-submit-btn">
+                  Add Abaya
+                </button>
+              </form>
+            </div>
+
+            <div class="admin-section">
+              <h3 class="section-title">Manage Existing Abayas</h3>
+              <div id="adminItemsList" class="admin-items-list"></div>
+            </div>
+          </div>
+        </div>
+      </div>
+    </main>
+
+    <!-- Toast Notifications -->
+    <div id="toastContainer" class="toast-container"></div>
+
+    <script src="https://cdn.jsdelivr.net/npm/@supabase/supabase-js@2"></script>
+    <script src="supabase-config.js"></script>
+    <script src="script.js"></script>
+  </body>
+</html>
