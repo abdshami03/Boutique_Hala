@@ -822,7 +822,8 @@ class BoutiqueHalaApp {
     event.preventDefault();
 
     const formData = new FormData(event.target);
-    const imageFiles = formData.getAll("itemImagesInput");
+    const imageInput = document.getElementById("itemImagesInput");
+    const imageFiles = imageInput.files;
     let imageUrls = [];
 
     // Upload each image to Supabase Storage
