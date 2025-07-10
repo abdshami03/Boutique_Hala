@@ -856,14 +856,14 @@ class BoutiqueHalaApp {
       category: formData.get("itemCategoryInput"),
       description: formData.get("itemDescriptionInput"),
       price: formData.get("itemPriceInput"),
-      sizes: formData
-        .get("itemSizesInput")
+      sizes: (formData.get("itemSizesInput") || "")
         .split(",")
-        .map((s) => s.trim()),
-      colors: formData
-        .get("itemColorsInput")
+        .map((s) => s.trim())
+        .filter((s) => s),
+      colors: (formData.get("itemColorsInput") || "")
         .split(",")
-        .map((c) => c.trim()),
+        .map((c) => c.trim())
+        .filter((c) => c),
       images: imageUrls,
       videos: [],
     };
