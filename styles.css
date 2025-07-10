@@ -52,8 +52,8 @@
 
 body {
   font-family: var(--font-family);
-  background-color: var(--background);
-  color: var(--foreground);
+  background-color: #f9f7f3;
+  color: #3d2c1e;
   line-height: 1.6;
   -webkit-font-smoothing: antialiased;
   -moz-osx-font-smoothing: grayscale;
@@ -91,16 +91,22 @@ body {
 }
 
 .nav-logo {
-  font-size: 2rem;
-  display: flex;
-  align-items: center;
-  justify-content: center;
+  height: 60px;
+  width: auto;
+  margin-right: 1rem;
+  border-radius: 12px;
+  box-shadow: 0 2px 8px rgba(0, 0, 0, 0.07);
+  background: #fff;
+  padding: 0.25rem 0.5rem;
+  object-fit: contain;
 }
 
 .nav-title {
-  font-size: 1.5rem;
-  font-weight: 700;
-  color: var(--foreground);
+  font-size: 2rem;
+  font-weight: 800;
+  color: #3d2c1e;
+  letter-spacing: 1px;
+  font-family: "Cairo", "Inter", sans-serif;
 }
 
 .back-btn {
@@ -319,18 +325,15 @@ body {
 
 /* Abaya Card */
 .abaya-card {
-  background-color: var(--card);
-  border: 1px solid var(--border);
-  border-radius: var(--radius-lg);
-  overflow: hidden;
-  cursor: pointer;
-  transition: all 0.3s ease;
-  box-shadow: var(--shadow-soft);
+  border-radius: 1.25rem;
+  box-shadow: 0 2px 16px rgba(0, 0, 0, 0.07);
+  background: #fff;
+  border: none;
+  transition: box-shadow 0.2s, transform 0.2s;
 }
-
 .abaya-card:hover {
-  transform: translateY(-2px);
-  box-shadow: var(--shadow-elegant);
+  box-shadow: 0 8px 32px rgba(167, 139, 250, 0.15);
+  transform: translateY(-4px) scale(1.02);
 }
 
 .abaya-card.list-view {
@@ -423,17 +426,17 @@ body {
   display: inline-block;
   background-color: transparent;
   border: 1px solid var(--soft-beige);
-  color: var(--muted-foreground);
+  color: #fbbf24;
   padding: var(--spacing-xs) var(--spacing-sm);
   border-radius: var(--radius-sm);
-  font-size: 0.75rem;
+  font-size: 0.95rem;
   margin-bottom: var(--spacing-sm);
 }
 
 .card-name {
-  font-size: 1.125rem;
-  font-weight: 600;
-  color: var(--foreground);
+  font-size: 1.2rem;
+  font-weight: 700;
+  color: #a78bfa;
   margin-bottom: var(--spacing-sm);
   line-height: 1.4;
   transition: color 0.2s ease;
@@ -808,25 +811,26 @@ body {
 }
 
 .form-label {
-  font-size: 0.875rem;
-  font-weight: 500;
-  color: var(--foreground);
+  font-weight: 600;
+  color: #3d2c1e;
+  margin-bottom: 0.5rem;
 }
 
 .form-input,
 .form-textarea {
-  padding: var(--spacing-md);
-  border: 1px solid var(--border);
-  border-radius: var(--radius-md);
-  background-color: var(--background);
-  font-size: 0.875rem;
-  transition: border-color 0.2s ease;
+  border: 1.5px solid #e5e7eb;
+  border-radius: 0.75rem;
+  padding: 0.75rem 1rem;
+  font-size: 1rem;
+  background: #f9f7f3;
+  color: #3d2c1e;
+  margin-bottom: 1rem;
+  transition: border 0.2s;
 }
-
 .form-input:focus,
 .form-textarea:focus {
+  border-color: #a78bfa;
   outline: none;
-  border-color: var(--primary);
 }
 
 .form-textarea {
@@ -849,6 +853,23 @@ body {
 .admin-login-btn:hover,
 .admin-submit-btn:hover {
   opacity: 0.9;
+}
+
+.admin-submit-btn {
+  background: linear-gradient(90deg, #a78bfa 0%, #fbbf24 100%);
+  color: #fff;
+  font-weight: 700;
+  font-size: 1.1rem;
+  border: none;
+  border-radius: 0.75rem;
+  padding: 1rem 0;
+  margin-top: 1rem;
+  box-shadow: 0 2px 8px rgba(0, 0, 0, 0.07);
+  transition: background 0.2s, box-shadow 0.2s;
+}
+.admin-submit-btn:hover {
+  background: linear-gradient(90deg, #fbbf24 0%, #a78bfa 100%);
+  box-shadow: 0 4px 16px rgba(0, 0, 0, 0.12);
 }
 
 .admin-dashboard-container {
@@ -900,10 +921,11 @@ body {
 }
 
 .section-title {
-  font-size: 1.25rem;
-  font-weight: 600;
-  color: var(--foreground);
-  margin-bottom: var(--spacing-lg);
+  font-family: "Cairo", "Inter", sans-serif;
+  color: #a78bfa;
+  font-size: 1.3rem;
+  font-weight: 700;
+  margin-bottom: 1rem;
 }
 
 .admin-form {
@@ -1095,11 +1117,11 @@ body {
   }
 
   .nav-logo {
-    height: 30px;
+    height: 40px;
   }
 
   .nav-title {
-    font-size: 1rem;
+    font-size: 1.2rem;
   }
 
   .item-name {

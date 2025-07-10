@@ -32,7 +32,7 @@
           </button>
         </div>
         <div class="nav-center">
-          <div class="nav-logo">🕌</div>
+          <img src="logo.png" alt="Boutique Hala Logo" class="nav-logo" />
           <h1 class="nav-title">Boutique Hala</h1>
         </div>
         <div class="nav-right">
@@ -409,13 +409,14 @@
 
                 <div class="form-group">
                   <label for="itemImagesInput" class="form-label"
-                    >Image URLs (comma-separated)</label
+                    >Images (upload one or more)</label
                   >
                   <input
-                    type="text"
+                    type="file"
                     id="itemImagesInput"
                     class="form-input"
-                    placeholder="https://example.com/image1.jpg, https://example.com/image2.jpg"
+                    accept="image/*"
+                    multiple
                     required
                   />
                 </div>

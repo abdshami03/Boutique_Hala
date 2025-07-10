@@ -822,6 +822,34 @@ class BoutiqueHalaApp {
     event.preventDefault();
 
     const formData = new FormData(event.target);
+    const imageFiles = formData.getAll("itemImagesInput");
+    let imageUrls = [];
+
+    // Upload each image to Supabase Storage
+    for (const file of imageFiles) {
+      if (file && file.size > 0) {
+        const fileExt = file.name.split(".").pop();
+        const fileName = `${Date.now()}-${Math.random()
+          .toString(36)
+          .substr(2, 9)}.${fileExt}`;
+        const { data, error } = await supabase.storage
+          .from("abaya-images")
+          .upload(fileName, file);
+        if (error) {
+          this.toastManager.show({
+            title: "Image upload failed",
+            description: error.message,
+            variant: "error",
+          });
+          return;
+        }
+        const { data: publicUrlData } = supabase.storage
+          .from("abaya-images")
+          .getPublicUrl(fileName);
+        imageUrls.push(publicUrlData.publicUrl);
+      }
+    }
+
     const item = {
       name: formData.get("itemNameInput"),
       category: formData.get("itemCategoryInput"),
@@ -835,10 +863,7 @@ class BoutiqueHalaApp {
         .get("itemColorsInput")
         .split(",")
         .map((c) => c.trim()),
-      images: formData
-        .get("itemImagesInput")
-        .split(",")
-        .map((i) => i.trim()),
+      images: imageUrls,
       videos: [],
     };
 
